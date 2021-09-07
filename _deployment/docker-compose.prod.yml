@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  backend:
+    image: containers.0b101010.codes/mozilla/webcompat-interventions-dashboard/backend:latest
+  nginx:
+    image: containers.0b101010.codes/mozilla/webcompat-interventions-dashboard/backend
+    ports:
+      - 8080:80
