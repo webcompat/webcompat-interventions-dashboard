@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  backend:
+    build:
+      context: ..
+      dockerfile: ./_deployment/Dockerfile.node
+  nginx:
+    build:
+      context: ..
+      dockerfile: ./_deployment/Dockerfile.nginx
+    ports:
+      - 8080:80
+    volumes:
+      - ../frontend:/srv/http:ro

@@ -1,0 +1,15 @@
+{
+  "name": "interventions-dashboard",
+  "description": "Lists currently applied interventions from mozilla-central, without any caches or anything.",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Dennis Schubert <dschubert@mozila.com>",
+  "license": "MPL-2.0",
+  "dependencies": {
+    "node-fetch": "^3.0.0"
+  }
+}
