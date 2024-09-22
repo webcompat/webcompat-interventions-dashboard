@@ -10,6 +10,6 @@
   "author": "Dennis Schubert <dschubert@mozila.com>",
   "license": "MPL-2.0",
   "dependencies": {
-    "node-fetch": "^3.0.0"
+    "node-fetch": "3.3.2"
   }
 }
