@@ -1,0 +1,68 @@
+---
+import DataFormatters from "../lib/dataFormatters";
+import DataLoader from "../lib/dataLoader";
+
+const injections = await new DataLoader(
+  "https://hg.mozilla.org/mozilla-central/raw-file/tip/browser/extensions/webcompat/data/injections.js",
+).run();
+const uaOverrides = await new DataLoader(
+  "https://hg.mozilla.org/mozilla-central/raw-file/tip/browser/extensions/webcompat/data/ua_overrides.js",
+).run();
+
+const allInterventions = []
+  .concat(injections.map(DataFormatters.Injection), uaOverrides.map(DataFormatters.UaOverride))
+  .sort((a, b) => (parseInt(a.bug, 10) > parseInt(b.bug, 10) ? 1 : -1))
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currently active WebCompat Interventions</title>
+    <style>
+      #content,
+      p {
+        margin: 25px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td,
+      th {
+        border: 1px solid black;
+        padding: 5px 7px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <table>
+        <tr>
+          <th>Bugzilla Bug</th>
+          <th>Affected domain(s)</th>
+          <th>Type</th>
+          <th>Target platform</th>
+        </tr>
+        {
+          allInterventions.map((intervention) => (
+            <tr>
+              <td>
+                <a href={`https://bugzilla.mozilla.org/show_bug.cgi?id=${intervention.bug}`}>{intervention.bug}</a>
+              </td>
+              <td>{intervention.domain}</td>
+              <td>{intervention.type}</td>
+              <td>{intervention.platform}</td>
+            </tr>
+          ))
+        }
+      </table>
+    </div>
+    <p>
+      Showing all interventions currently shipping in mozilla-central. List generated on {new Date().toISOString()}.
+    </p>
+  </body>
+</html>

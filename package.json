@@ -1,15 +1,22 @@
 {
-  "name": "interventions-dashboard",
-  "description": "Lists currently applied interventions from mozilla-central, without any caches or anything.",
+  "name": "webcompat-interventions-dashboard",
+  "type": "module",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "start": "node server.js"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "lint": "prettier --write './src/**/*.{astro,js,ts}'"
   },
-  "author": "Dennis Schubert <dschubert@mozila.com>",
-  "license": "MPL-2.0",
   "dependencies": {
+    "astro": "4.15.12",
     "node-fetch": "3.3.2"
+  },
+  "devDependencies": {
+    "prettier": "3.3.3",
+    "prettier-plugin-astro": "0.14.1"
   }
 }
